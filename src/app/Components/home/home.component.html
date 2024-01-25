@@ -1,1 +1,13 @@
-<p>home works!</p>
+<img *ngIf="isImageShown" [src]="storeInfo.imgURL" alt="" class="img-fluid m-2">
+<button type="button" class="btn btn-primary" (click)="toggleImage()">
+    Toggle image
+</button>
+
+<h1>{{storeInfo.name}}</h1>
+<h4>Our branches:
+    <ul>
+        <li *ngFor="let branch of storeInfo.branches">
+            {{branch}}
+        </li>
+    </ul>
+</h4>

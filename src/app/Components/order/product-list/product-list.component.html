@@ -1,0 +1,30 @@
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Count</th>
+            <th>Buy</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products">
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td><img [src]="product.imageURL" alt="product"></td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.price}}</td>
+
+            <td><input #itemsCount class="form-control" type="number" min="0" ></td>
+            <td><button type="button" class="btn btn-secondary" (click)="buy(product.id, itemsCount.value)"> Buy </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<h3>
+    Order Total price: {{orderTotalPrice}}
+</h3>
