@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ICategory } from 'src/app/Models/icategory';
 import { IProduct } from 'src/app/Models/iproduct';
 
 @Component({
@@ -10,6 +11,9 @@ export class ProductListComponent implements OnInit {
 
   products: IProduct[];
   orderTotalPrice = 0;
+  selectedCategoryId : number = 0;
+
+  catlist: ICategory[];
 
   constructor() {
     this.products = [
@@ -52,7 +56,7 @@ export class ProductListComponent implements OnInit {
         quantity: 3,
         imageURL: "https://picsum.photos/100",
         categoryID: 2
-      },{
+      }, {
         id: 510,
         name: "Iphone 13",
         price: 30000,
@@ -60,7 +64,22 @@ export class ProductListComponent implements OnInit {
         imageURL: "https://picsum.photos/100",
         categoryID: 2
       },
-]
+    ]
+
+    this.catlist = [
+      {
+        id: 1,
+        name: "Laptops"
+      },
+      {
+        id: 2,
+        name: "SmartPhones"
+      },
+      {
+        id: 3,
+        name: "Tablet"
+      }
+    ];
   }
 
 
@@ -69,8 +88,12 @@ export class ProductListComponent implements OnInit {
 
   }
 
-  buy(productPrice: number, count: any) : void{
-     this.orderTotalPrice += Number(count) * productPrice;
+  buy(productPrice: number, count: any): void {
+    this.orderTotalPrice += Number(count) * productPrice;
+  }
+
+  changeCat(){
+    this.selectedCategoryId = Math.ceil(Math.random() * 3)
   }
 
 }

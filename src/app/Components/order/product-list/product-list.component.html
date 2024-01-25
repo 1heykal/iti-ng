@@ -1,3 +1,20 @@
+<div class="mb-3">
+    <label for="" class="form-label">Category:</label>
+    <select class="form-select form-select-lg" name="category" id="prodCategory" [(ngModel)]="selectedCategoryId">
+        <option *ngFor="let category of catlist" [value]="category.id">{{category.name}}</option>
+    </select>
+</div>
+[To be removed] For Test:
+{{selectedCategoryId}}
+<button type="button" class="btn btn-primary" (click)="changeCat()">
+    Change  Category
+</button>
+
+<div>
+
+</div>
+
+<hr>
 <table class="table table-sm">
     <thead>
         <tr>
@@ -11,15 +28,16 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let product of products">
+        <tr *ngFor="let product of products" [class.bg-warning]="">
             <td>{{product.id}}</td>
             <td>{{product.name}}</td>
             <td><img [src]="product.imageURL" alt="product"></td>
             <td>{{product.quantity}}</td>
             <td>{{product.price}}</td>
 
-            <td><input #itemsCount class="form-control" type="number" min="0" ></td>
-            <td><button type="button" class="btn btn-secondary" (click)="buy(product.id, itemsCount.value)"> Buy </button>
+            <td><input #itemsCount class="form-control" type="number" min="0"></td>
+            <td><button type="button" class="btn btn-secondary" (click)="buy(product.id, itemsCount.value)"> Buy
+                </button>
             </td>
         </tr>
     </tbody>
