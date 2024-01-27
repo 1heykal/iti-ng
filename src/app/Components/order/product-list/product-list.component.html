@@ -1,5 +1,6 @@
 <div class="mb-3">
     <label for="" class="form-label">Category:</label>
+
     <select class="form-select form-select-lg" name="category" id="prodCategory" [(ngModel)]="selectedCategoryId">
         <option *ngFor="let category of catlist" [value]="category.id">{{category.name}}</option>
     </select>
@@ -7,7 +8,7 @@
 [To be removed] For Test:
 {{selectedCategoryId}}
 <button type="button" class="btn btn-primary" (click)="changeCat()">
-    Change  Category
+    Change Category
 </button>
 
 <div>
@@ -18,7 +19,7 @@
 <table class="table table-sm">
     <thead>
         <tr>
-            <th>ID</th>
+            <th>No.</th>
             <th>Name</th>
             <th>Image</th>
             <th>Quantity</th>
@@ -28,8 +29,9 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let product of products" [class.bg-warning]="">
-            <td>{{product.id}}</td>
+        <tr *ngFor="let product of products; let i = index; trackBy: productsTrackByFn()" [class.d-none]="selectedCategoryId == 0? false : selectedCategoryId != product.categoryID"
+            [style.background-color]="(product.quantity) > 5? 'green': 'red'">
+            <td>{{i + 1}}</td>
             <td>{{product.name}}</td>
             <td><img [src]="product.imageURL" alt="product"></td>
             <td>{{product.quantity}}</td>
