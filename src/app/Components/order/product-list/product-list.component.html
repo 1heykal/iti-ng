@@ -29,12 +29,28 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let product of products; let i = index; trackBy: productsTrackByFn()" [class.d-none]="selectedCategoryId == 0? false : selectedCategoryId != product.categoryID"
-            [style.background-color]="(product.quantity) > 5? 'green': 'red'">
+        <tr *ngFor="let product of products; let i = index;" [ngStyle]="{
+            'background-color': product.quantity == 0? 'lightgray' : 'green',
+            'color': product.quantity == 0? 'white' : 'orange'
+        }">
             <td>{{i + 1}}</td>
             <td>{{product.name}}</td>
             <td><img [src]="product.imageURL" alt="product"></td>
-            <td>{{product.quantity}}</td>
+            <td>
+                <ng-container [ngSwitch]="product.quantity">
+
+                    <div *ngSwitchCase="0">
+                        Out of Stock
+                    </div>
+                    <div *ngSwitchCase="1">
+                        Last Item
+                    </div>
+                    <div *ngSwitchDefault>
+                        {{product.quantity}}
+                    </div>
+                </ng-container>
+
+            </td>
             <td>{{product.price}}</td>
 
             <td><input #itemsCount class="form-control" type="number" min="0"></td>
