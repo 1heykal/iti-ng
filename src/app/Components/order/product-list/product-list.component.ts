@@ -12,15 +12,17 @@ export class ProductListComponent implements OnInit {
   products: IProduct[];
   orderTotalPrice = 0;
   selectedCategoryId : number = 0;
+  orderDate: Date;
 
   catlist: ICategory[];
 
   constructor() {
+    this.orderDate = new Date()
     this.products = [
       {
         id: 100,
         name: "Lenovo laptop",
-        price: 5000,
+        price: 5008880,
         quantity: 2,
         imageURL: "https://picsum.photos/100",
         categoryID: 1
@@ -28,7 +30,7 @@ export class ProductListComponent implements OnInit {
       {
         id: 201,
         name: "Samsung phone",
-        price: 3200,
+        price: 32777500,
         quantity: 5,
         imageURL: "https://picsum.photos/100",
         categoryID: 2
@@ -36,7 +38,7 @@ export class ProductListComponent implements OnInit {
       {
         id: 401,
         name: "Xiaomi phone",
-        price: 4000,
+        price: 7575755,
         quantity: 0,
         imageURL: "https://picsum.photos/100",
         categoryID: 2
@@ -44,7 +46,7 @@ export class ProductListComponent implements OnInit {
       {
         id: 601,
         name: "Redmi phone",
-        price: 2000,
+        price: 2055500,
         quantity: 3,
         imageURL: "https://picsum.photos/100",
         categoryID: 2
@@ -52,14 +54,14 @@ export class ProductListComponent implements OnInit {
       {
         id: 710,
         name: "Iphone phone",
-        price: 15000,
+        price: 15005550,
         quantity: 3,
         imageURL: "https://picsum.photos/100",
         categoryID: 2
       }, {
         id: 510,
         name: "Iphone 13",
-        price: 30000,
+        price: 3005800,
         quantity: 1,
         imageURL: "https://picsum.photos/100",
         categoryID: 2
@@ -67,7 +69,7 @@ export class ProductListComponent implements OnInit {
       {
         id: 510,
         name: "Iphone 13",
-        price: 30000,
+        price: 300857500,
         quantity: 0,
         imageURL: "https://picsum.photos/100",
         categoryID: 5

@@ -10,7 +10,8 @@
 <button type="button" class="btn btn-primary" (click)="changeCat()">
     Change Category
 </button>
-
+<br>
+Today's date {{orderDate | date:'longDate'}}
 <div>
 
 </div>
@@ -23,7 +24,8 @@
             <th>Name</th>
             <th>Image</th>
             <th>Quantity</th>
-            <th>Price</th>
+            <th>Price in $</th>
+            <th>Price in EGP</th>
             <th>Count</th>
             <th>Buy</th>
         </tr>
@@ -35,7 +37,7 @@
         }">
             <td>{{i + 1}}</td>
             <td>{{product.name}}</td>
-            <td><img [src]="product.imageURL" alt="product"></td>
+            <td><img LightBox="red" defaultColor="gray"  [src]="product.imageURL" alt="product"></td>
             <td>
                 <ng-container [ngSwitch]="product.quantity">
 
@@ -51,7 +53,8 @@
                 </ng-container>
 
             </td>
-            <td>{{product.price}}</td>
+            <td>{{product.price | currency:'USD'}}</td>
+            <td>{{product.price | USDtoEGP:70 | currency:'EGP'}}</td>
 
             <td><input #itemsCount class="form-control" type="number" min="0"></td>
             <td><button type="button" class="btn btn-secondary" (click)="buy(product.id, itemsCount.value)"> Buy
@@ -62,5 +65,5 @@
 </table>
 <hr>
 <h3>
-    Order Total price: {{orderTotalPrice}}
+    Order Total price: {{orderTotalPrice| currency}}
 </h3>
