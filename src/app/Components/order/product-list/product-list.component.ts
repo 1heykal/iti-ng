@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output} from '@angular/core';
 import { ICategory } from 'src/app/Models/icategory';
 import { IProduct } from 'src/app/Models/iproduct';
 
@@ -7,14 +7,16 @@ import { IProduct } from 'src/app/Models/iproduct';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, OnChanges{
 
   products: IProduct[];
-  orderTotalPrice = 0;
-  selectedCategoryId : number = 0;
-  orderDate: Date;
+  @Output() orderTotalPrice = 0;
+   orderDate: Date;
+   PrdListOfCategory: IProduct[] = [];
 
-  PrdListOfCategory: IProduct[] = [];
+  @Input() sentCategoryId : number = 0;
+
+
   constructor() {
     this.orderDate = new Date()
    
@@ -60,25 +62,30 @@ export class ProductListComponent implements OnInit {
         categoryID: 2
       }, {
         id: 510,
-        name: "Iphone 13",
+        name: "Tablet 13",
         price: 3005800,
         quantity: 1,
         imageURL: "https://picsum.photos/100",
-        categoryID: 2
+        categoryID: 3
       },
       {
         id: 510,
-        name: "Iphone 13",
+        name: "Tablet 13 pro",
         price: 300857500,
         quantity: 0,
         imageURL: "https://picsum.photos/100",
-        categoryID: 5
+        categoryID: 3
       },
     ]
 
     
 
     this.PrdListOfCategory= this.products;
+  }
+
+
+  ngOnChanges(): void {
+    this.filterProductsByCatId()
   }
 
 
@@ -91,16 +98,12 @@ export class ProductListComponent implements OnInit {
     this.orderTotalPrice += Number(count) * productPrice;
   }
 
-  changeCat(){
-    this.selectedCategoryId = Math.ceil(Math.random() * 3)
-  }
-
+ 
   productsTrackByFn(index: number, prod:IProduct) : number{
     return prod.id;
   }
 
-  filterProductsByCatId(){
-    this.PrdListOfCategory = this.products.filter(p => p.categoryID == this.selectedCategoryId);
+  private filterProductsByCatId(){
+    this.PrdListOfCategory = this.sentCategoryId == 0? this.products : this.products.filter(p => p.categoryID == this.sentCategoryId);
   }
-
 }

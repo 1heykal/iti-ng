@@ -10,7 +10,7 @@ export class OrderMasterComponent {
   categories: ICategory[];
 
   selectedCategoryId: number = 0;
- orderTotalPrice: number = 0;
+  orderTotalPrice: number = 0;
 
   constructor(){
     this.categories = [

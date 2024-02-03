@@ -2,15 +2,17 @@
 <div class="mb-3">
     <label for="" class="form-label">Category:</label>
 
+
     <select class="form-select form-select-lg" name="category" id="prodCategory" [(ngModel)]="selectedCategoryId">
+        <option value="0" selected>All</option>
         <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
     </select>
 </div>
-<hr>
-<div class="bg-warning">
-    <app-product-list>
 
-</app-product-list>
+<hr>
+
+<div class="bg-warning">
+    <app-product-list [sentCategoryId]="selectedCategoryId"> </app-product-list>
 </div>
 
 <hr>
