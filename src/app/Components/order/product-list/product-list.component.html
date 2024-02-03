@@ -1,11 +1,3 @@
-<div class="mb-3">
-    <label for="" class="form-label">Category:</label>
-
-    <select class="form-select form-select-lg" name="category" id="prodCategory" [(ngModel)]="selectedCategoryId">
-        <option *ngFor="let category of catlist" [value]="category.id">{{category.name}}</option>
-    </select>
-</div>
-[To be removed] For Test:
 {{selectedCategoryId}}
 <button type="button" class="btn btn-primary" (click)="changeCat()">
     Change Category
@@ -31,13 +23,13 @@ Today's date {{orderDate | date:'longDate'}}
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let product of products; let i = index;" [ngStyle]="{
+        <tr *ngFor="let product of PrdListOfCategory; let i = index;" [ngStyle]="{
             'background-color': product.quantity == 0? 'lightgray' : 'green',
             'color': product.quantity == 0? 'white' : 'orange'
         }">
             <td>{{i + 1}}</td>
             <td>{{product.name}}</td>
-            <td><img LightBox="red" defaultColor="gray"  [src]="product.imageURL" alt="product"></td>
+            <td><img LightBox="red" defaultColor="orange"  [src]="product.imageURL" alt="product"></td>
             <td>
                 <ng-container [ngSwitch]="product.quantity">
 
@@ -64,6 +56,3 @@ Today's date {{orderDate | date:'longDate'}}
     </tbody>
 </table>
 <hr>
-<h3>
-    Order Total price: {{orderTotalPrice| currency}}
-</h3>

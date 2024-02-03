@@ -14,10 +14,10 @@ export class ProductListComponent implements OnInit {
   selectedCategoryId : number = 0;
   orderDate: Date;
 
-  catlist: ICategory[];
-
+  PrdListOfCategory: IProduct[] = [];
   constructor() {
     this.orderDate = new Date()
+   
     this.products = [
       {
         id: 100,
@@ -76,20 +76,9 @@ export class ProductListComponent implements OnInit {
       },
     ]
 
-    this.catlist = [
-      {
-        id: 1,
-        name: "Laptops"
-      },
-      {
-        id: 2,
-        name: "SmartPhones"
-      },
-      {
-        id: 3,
-        name: "Tablet"
-      }
-    ];
+    
+
+    this.PrdListOfCategory= this.products;
   }
 
 
@@ -108,6 +97,10 @@ export class ProductListComponent implements OnInit {
 
   productsTrackByFn(index: number, prod:IProduct) : number{
     return prod.id;
+  }
+
+  filterProductsByCatId(){
+    this.PrdListOfCategory = this.products.filter(p => p.categoryID == this.selectedCategoryId);
   }
 
 }
