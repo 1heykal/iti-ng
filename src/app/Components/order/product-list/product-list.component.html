@@ -45,13 +45,10 @@ Today's date {{orderDate | date:'longDate'}}
             <td>{{product.price | USDtoEGP:70 | currency:'EGP'}}</td>
 
             <td><input #itemsCount class="form-control" type="number" min="0"></td>
-            <td><button type="button" class="btn btn-secondary" (click)="buy(product.id, itemsCount.value)"> Buy
+            <td><button type="button" class="btn btn-secondary" (click)="buy(product.price, itemsCount.value)"> Buy
                 </button>
             </td>
         </tr>
     </tbody>
 </table>
 <hr>
-<h3 class="text-danger">
-    Order Total price: {{orderTotalPrice| currency}}
-</h3>

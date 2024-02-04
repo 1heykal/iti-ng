@@ -12,11 +12,14 @@
 <hr>
 
 <div class="bg-warning">
-    <app-product-list [sentCategoryId]="selectedCategoryId"> </app-product-list>
+    <app-product-list [sentCategoryId]="selectedCategoryId" (totalPriceChanged)="onTotalOriceChanged($event)"> </app-product-list>
 </div>
 
 <hr>
-
+<div>
+    <h3>Enter your name:</h3>
+    <input #customerName type="text" class="form-control">
+</div>
 <h3>
-    Order Total Price: {{orderTotalPrice | currency}}
+    Order Total Price: {{receivedOrderTotalPrice | currency}}
 </h3>

@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, OnChanges, Output} from '@angular/core';
-import { ICategory } from 'src/app/Models/icategory';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter} from '@angular/core';
 import { IProduct } from 'src/app/Models/iproduct';
 
 @Component({
@@ -10,21 +9,26 @@ import { IProduct } from 'src/app/Models/iproduct';
 export class ProductListComponent implements OnInit, OnChanges{
 
   products: IProduct[];
-  @Output() orderTotalPrice = 0;
+  orderTotalPrice = 0;
    orderDate: Date;
    PrdListOfCategory: IProduct[] = [];
 
   @Input() sentCategoryId : number = 0;
 
+  @Output() totalPriceChanged : EventEmitter<number>;
+
 
   constructor() {
+
+    this.totalPriceChanged = new EventEmitter<number>();
+
     this.orderDate = new Date()
    
     this.products = [
       {
         id: 100,
         name: "Lenovo laptop",
-        price: 5008880,
+        price: 20080,
         quantity: 2,
         imageURL: "https://picsum.photos/100",
         categoryID: 1
@@ -32,7 +36,7 @@ export class ProductListComponent implements OnInit, OnChanges{
       {
         id: 201,
         name: "Samsung phone",
-        price: 32777500,
+        price: 3270,
         quantity: 5,
         imageURL: "https://picsum.photos/100",
         categoryID: 2
@@ -40,7 +44,7 @@ export class ProductListComponent implements OnInit, OnChanges{
       {
         id: 401,
         name: "Xiaomi phone",
-        price: 7575755,
+        price: 7500,
         quantity: 0,
         imageURL: "https://picsum.photos/100",
         categoryID: 2
@@ -48,7 +52,7 @@ export class ProductListComponent implements OnInit, OnChanges{
       {
         id: 601,
         name: "Redmi phone",
-        price: 2055500,
+        price: 7000,
         quantity: 3,
         imageURL: "https://picsum.photos/100",
         categoryID: 2
@@ -56,14 +60,14 @@ export class ProductListComponent implements OnInit, OnChanges{
       {
         id: 710,
         name: "Iphone phone",
-        price: 15005550,
+        price: 30000,
         quantity: 3,
         imageURL: "https://picsum.photos/100",
         categoryID: 2
       }, {
         id: 510,
         name: "Tablet 13",
-        price: 3005800,
+        price: 3500,
         quantity: 1,
         imageURL: "https://picsum.photos/100",
         categoryID: 3
@@ -71,7 +75,7 @@ export class ProductListComponent implements OnInit, OnChanges{
       {
         id: 510,
         name: "Tablet 13 pro",
-        price: 300857500,
+        price: 10000,
         quantity: 0,
         imageURL: "https://picsum.photos/100",
         categoryID: 3
@@ -96,6 +100,7 @@ export class ProductListComponent implements OnInit, OnChanges{
 
   buy(productPrice: number, count: any): void {
     this.orderTotalPrice += Number(count) * productPrice;
+    this.totalPriceChanged.emit(this.orderTotalPrice);
   }
 
  
