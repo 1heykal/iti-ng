@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { ICategory } from 'src/app/Models/icategory';
+import { ProductListComponent } from '../product-list/product-list.component';
 
 @Component({
   selector: 'app-order-master',
@@ -13,6 +14,7 @@ export class OrderMasterComponent implements AfterViewInit{
   receivedOrderTotalPrice: number = 0;
 
   @ViewChild('customerName') custNameInpElem!: ElementRef;
+  @ViewChild(ProductListComponent) productListComObj!: ProductListComponent;
 
   constructor(){
     this.categories = [
@@ -32,11 +34,15 @@ export class OrderMasterComponent implements AfterViewInit{
   }
 
   ngAfterViewInit(): void {
-    this.custNameInpElem.nativeElement.value = "Your name here..";
+    this.custNameInpElem.nativeElement.placeholder = "Your name here..";
     this.custNameInpElem.nativeElement.style.border = "2px solid red";
+   // console.log(this.productListComObj.products);
   }
 
   onTotalOriceChanged(totalPrice: number){
     this.receivedOrderTotalPrice = totalPrice;
+  }
+  completeOrder(){
+    this.productListComObj.products[0].quantity -= 1;
   }
 }
