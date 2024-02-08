@@ -1,0 +1,21 @@
+{{product | json}}
+<div class="card m-2" style="width: 30%;">
+    <img class="card-img-top" [src]="product?.imageURL" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">{{product?.name}}</h5>
+        <div class="card-text">
+            <div>
+                Price: {{product?.price | currency}}
+            </div>
+            <div>
+                Quantity: {{product?.quantity}}
+            </div>
+        </div>
+        <hr>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-secondary" (click)="previous()">Previous</button>
+            <button type="button" class="btn btn-secondary" (click)="goBack()">Back</button>
+            <button type="button" class="btn btn-secondary" (click)="next()">Next</button>
+        </div>
+    </div>
+</div>

@@ -12,6 +12,10 @@ import { FormsModule } from '@angular/forms';
 import { LightBoxDirective } from './Directives/light-box.directive';
 import { USDtoEGPPipe } from './Pipes/usdto-egp.pipe';
 import { OrderMasterComponent } from './Components/order/order-master/order-master.component';
+import { UserLoginComponent } from './Components/user-login/user-login.component';
+import { MainLayoutComponent } from './Components/main-layout/main-layout.component';
+import { NotFoundComponent } from './Components/NotFound/NotFound.component';
+import { ProductDetailsComponent } from './Components/order/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,11 @@ import { OrderMasterComponent } from './Components/order/order-master/order-mast
     ProductListComponent,
     LightBoxDirective,
     USDtoEGPPipe,
-    OrderMasterComponent
+    OrderMasterComponent,
+    NotFoundComponent,
+    UserLoginComponent,
+    MainLayoutComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

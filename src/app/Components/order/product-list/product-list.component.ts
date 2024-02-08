@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter} from '@angular/core';
+import { Router } from '@angular/router';
 import { IProduct } from 'src/app/Models/iproduct';
+import { StaticProductsService } from 'src/app/Services/static-products.service';
 
 @Component({
   selector: 'app-product-list',
@@ -8,94 +10,30 @@ import { IProduct } from 'src/app/Models/iproduct';
 })
 export class ProductListComponent implements OnInit, OnChanges{
 
-  products: IProduct[];
+  products: IProduct[] = [];
   orderTotalPrice = 0;
    orderDate: Date;
    PrdListOfCategory: IProduct[] = [];
 
   @Input() sentCategoryId : number = 0;
-
   @Output() totalPriceChanged : EventEmitter<number>;
 
 
-  constructor() {
-
+  constructor(private productsService: StaticProductsService, private router: Router) {
     this.totalPriceChanged = new EventEmitter<number>();
-
     this.orderDate = new Date()
-   
-    this.products = [
-      {
-        id: 100,
-        name: "Lenovo laptop",
-        price: 20080,
-        quantity: 2,
-        imageURL: "https://picsum.photos/100",
-        categoryID: 1
-      },
-      {
-        id: 201,
-        name: "Samsung phone",
-        price: 3270,
-        quantity: 5,
-        imageURL: "https://picsum.photos/100",
-        categoryID: 2
-      },
-      {
-        id: 401,
-        name: "Xiaomi phone",
-        price: 7500,
-        quantity: 0,
-        imageURL: "https://picsum.photos/100",
-        categoryID: 2
-      },
-      {
-        id: 601,
-        name: "Redmi phone",
-        price: 7000,
-        quantity: 3,
-        imageURL: "https://picsum.photos/100",
-        categoryID: 2
-      },
-      {
-        id: 710,
-        name: "Iphone phone",
-        price: 30000,
-        quantity: 3,
-        imageURL: "https://picsum.photos/100",
-        categoryID: 2
-      }, {
-        id: 510,
-        name: "Tablet 13",
-        price: 3500,
-        quantity: 1,
-        imageURL: "https://picsum.photos/100",
-        categoryID: 3
-      },
-      {
-        id: 510,
-        name: "Tablet 13 pro",
-        price: 10000,
-        quantity: 0,
-        imageURL: "https://picsum.photos/100",
-        categoryID: 3
-      },
-    ]
-
-    
-
-    this.PrdListOfCategory= this.products;
   }
 
 
   ngOnChanges(): void {
-    this.filterProductsByCatId()
+    this.PrdListOfCategory = this.productsService.getProductsByCatId(this.sentCategoryId);
   }
 
 
 
   ngOnInit(): void {
-
+    this.PrdListOfCategory = this.productsService.getProductsByCatId(this.sentCategoryId);
+    this.products = this.PrdListOfCategory = this.productsService.getAllProducts();
   }
 
   buy(productPrice: number, count: any): void {
@@ -107,8 +45,9 @@ export class ProductListComponent implements OnInit, OnChanges{
   productsTrackByFn(index: number, prod:IProduct) : number{
     return prod.id;
   }
-
-  private filterProductsByCatId(){
-    this.PrdListOfCategory = this.sentCategoryId == 0? this.products : this.products.filter(p => p.categoryID == this.sentCategoryId);
+  openProductDetails(pid: number){
+    this.router.navigate(['/products', pid]);
   }
+  
+
 }

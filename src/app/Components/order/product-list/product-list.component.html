@@ -15,7 +15,8 @@ Today's date {{orderDate | date:'longDate'}}
             <th>Price in $</th>
             <th>Price in EGP</th>
             <th>Count</th>
-            <th>Buy</th>
+            <th>Details</th>
+            <th>Add</th>
         </tr>
     </thead>
     <tbody>
@@ -25,7 +26,7 @@ Today's date {{orderDate | date:'longDate'}}
         }">
             <td>{{i + 1}}</td>
             <td>{{product.name}}</td>
-            <td><img LightBox="red" defaultColor="orange"  [src]="product.imageURL" alt="product"></td>
+            <td><img LightBox="red" defaultColor="orange" [src]="product.imageURL" alt="product"></td>
             <td>
                 <ng-container [ngSwitch]="product.quantity">
 
@@ -45,6 +46,9 @@ Today's date {{orderDate | date:'longDate'}}
             <td>{{product.price | USDtoEGP:70 | currency:'EGP'}}</td>
 
             <td><input #itemsCount class="form-control" type="number" min="0"></td>
+            <td>
+                <a class="btn btn-warning" [routerLink]="['/products', product.id]" role="button">Details</a>
+            </td>
             <td><button type="button" class="btn btn-secondary" (click)="buy(product.price, itemsCount.value)"> Buy
                 </button>
             </td>
