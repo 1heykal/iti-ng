@@ -14,7 +14,7 @@ export class StaticProductsService {
       name: "Lenovo laptop",
       price: 20080,
       quantity: 2,
-      imageURL: "https://picsum.photos/350",
+      imageURL: "assets/csharp.png",
       categoryID: 1
     },
     {
@@ -22,7 +22,7 @@ export class StaticProductsService {
       name: "Samsung phone",
       price: 3270,
       quantity: 5,
-      imageURL: "https://picsum.photos/350",
+      imageURL: "assets/csharp.png",
       categoryID: 2
     },
     {
@@ -30,7 +30,7 @@ export class StaticProductsService {
       name: "Xiaomi phone",
       price: 7500,
       quantity: 0,
-      imageURL: "https://picsum.photos/350",
+      imageURL: "assets/csharp.png",
       categoryID: 2
     },
     {
@@ -38,7 +38,7 @@ export class StaticProductsService {
       name: "Redmi phone",
       price: 7000,
       quantity: 3,
-      imageURL: "https://picsum.photos/350",
+      imageURL: "assets/csharp.png",
       categoryID: 2
     },
     {
@@ -46,14 +46,14 @@ export class StaticProductsService {
       name: "Iphone phone",
       price: 30000,
       quantity: 3,
-      imageURL: "https://picsum.photos/350",
+      imageURL: "assets/csharp.png",
       categoryID: 2
     }, {
       id: 510,
       name: "Tablet 13",
       price: 3500,
       quantity: 1,
-      imageURL: "https://picsum.photos/350",
+      imageURL: "assets/csharp.png",
       categoryID: 3
     },
     {
@@ -61,7 +61,7 @@ export class StaticProductsService {
       name: "Tablet 13 pro",
       price: 10000,
       quantity: 0,
-      imageURL: "https://picsum.photos/350",
+      imageURL: "assets/csharp.png",
       categoryID: 3
     },
   ];

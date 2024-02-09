@@ -26,7 +26,7 @@ Today's date {{orderDate | date:'longDate'}}
         }">
             <td>{{i + 1}}</td>
             <td>{{product.name}}</td>
-            <td><img LightBox="red" defaultColor="orange" [src]="product.imageURL" alt="product"></td>
+            <td><img LightBox="red" defaultColor="orange" width="100px" [src]="product.imageURL" alt="product"></td>
             <td>
                 <ng-container [ngSwitch]="product.quantity">
 

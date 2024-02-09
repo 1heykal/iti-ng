@@ -1,4 +1,3 @@
-{{product | json}}
 <div class="card m-2" style="width: 30%;">
     <img class="card-img-top" [src]="product?.imageURL" alt="Card image cap">
     <div class="card-body">
@@ -13,9 +12,9 @@
         </div>
         <hr>
         <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary" (click)="previous()">Previous</button>
+            <button [disabled]="pid == productsIds[0]" type="button" class="btn btn-secondary" (click)="previous()">Previous</button>
             <button type="button" class="btn btn-secondary" (click)="goBack()">Back</button>
-            <button type="button" class="btn btn-secondary" (click)="next()">Next</button>
+            <button [disabled]="pid == productsIds[productsIds.length - 1]" type="button" class="btn btn-secondary" (click)="next()">Next</button>
         </div>
     </div>
 </div>

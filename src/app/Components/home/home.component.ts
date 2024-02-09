@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit{
   isImageShown:boolean;
 
   constructor(){
-    this.storeInfo = new StroeData("Iti", "https://picsum.photos/350/200", ["Cairo", "Alex", "Mansoura"]);
+    this.storeInfo = new StroeData("Iti", "assets/csharp.png", ["Cairo", "Alex", "Mansoura"]);
     this.isImageShown = true;
   }
   ngOnInit(): void {
