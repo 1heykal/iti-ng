@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,17 @@ export class PromotionAdsService {
         observer.next(this.ads[counter++]);      
       }, 
       intervalInSeconds * 1000);
-    });
+
+      return {
+        unsubscribe(){
+          clearInterval(adsTimer);
+        }
+      }
+    }
+    );
+  }
+
+  getSerialAds() : Observable<string>{
+    return from(this.ads);
   }
 }
