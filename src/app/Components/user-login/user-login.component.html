@@ -1,1 +1,6 @@
-<p>user-login works!</p>
+<button  [disabled]="isAuthenticated" type="button" class="btn btn-success m-3" (click)="login()">
+    Login
+</button>
+<button [disabled]="!isAuthenticated" type="button" class="btn btn-danger m-3" (click)="logout()">
+    Logout
+</button>
