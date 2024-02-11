@@ -7,6 +7,7 @@ import { NotFoundComponent } from './Components/NotFound/NotFound.component';
 import { UserLoginComponent } from './Components/user-login/user-login.component';
 import { MainLayoutComponent } from './Components/main-layout/main-layout.component';
 import { ProductDetailsComponent } from './Components/order/product-details/product-details.component';
+import { authGuard } from './Guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -15,7 +16,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'products', component: ProductListComponent },
       { path: 'products/:pid', component: ProductDetailsComponent },
-      { path: 'order', component: OrderMasterComponent },
+      { path: 'order', component: OrderMasterComponent, canActivate: [authGuard] },
     ]
   },
   { path: 'login', component: UserLoginComponent },

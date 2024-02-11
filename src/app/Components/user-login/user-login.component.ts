@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { UserAuthService } from 'src/app/Services/user-auth.service';
 
 @Component({
@@ -10,7 +11,6 @@ export class UserLoginComponent implements OnInit{
 
   isAuthenticated: boolean = false;
   constructor(private authService: UserAuthService){
-
   }
   ngOnInit(): void {
     this.isAuthenticated = this.authService.isUserLogged;
@@ -25,6 +25,8 @@ export class UserLoginComponent implements OnInit{
     this.authService.logout();
     this.isAuthenticated = false;
   }
+
+
 
   
 }
