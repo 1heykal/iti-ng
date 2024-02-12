@@ -1,15 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserAuthService {
-  private isLoggedSubject : BehaviorSubject<boolean>;
+export class UserAuthService{
+  private isLoggedSubject !: BehaviorSubject<boolean>;
 
   constructor() {
-    this.isLoggedSubject = new BehaviorSubject<boolean>(false)
+    this.isLoggedSubject = new BehaviorSubject<boolean>(this.isUserLogged);
    }
+
 
   login(username: string, password:string){
     // Call login api, and get access token

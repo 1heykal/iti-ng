@@ -16,6 +16,7 @@ import { UserLoginComponent } from './Components/user-login/user-login.component
 import { MainLayoutComponent } from './Components/main-layout/main-layout.component';
 import { NotFoundComponent } from './Components/NotFound/NotFound.component';
 import { ProductDetailsComponent } from './Components/order/product-details/product-details.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ProductDetailsComponent } from './Components/order/product-details/prod
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
