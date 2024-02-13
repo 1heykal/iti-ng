@@ -1,0 +1,90 @@
+{
+  "categories": [
+    {
+      "id": "1",
+      "name": "Laptops"
+    },
+    {
+      "id": "2",
+      "name": "tablets"
+    },
+    {
+      "id": "3",
+      "name": "Mobiles"
+    }
+  ],
+  "products": [
+    {
+      "id": "100",
+      "name": "Lenovo laptop",
+      "price": 20080,
+      "quantity": 2,
+      "imageURL": "assets/csharp.png",
+      "categoryID": 1
+    },
+    {
+      "id": "201",
+      "name": "Samsung phone",
+      "price": 3270,
+      "quantity": 5,
+      "imageURL": "assets/csharp.png",
+      "categoryID": 2
+    },
+    {
+      "id": "401",
+      "name": "Xiaomi phone",
+      "price": 7500,
+      "quantity": 0,
+      "imageURL": "assets/csharp.png",
+      "categoryID": 2
+    },
+    {
+      "id": "601",
+      "name": "Redmi phone",
+      "price": 7000,
+      "quantity": 3,
+      "imageURL": "assets/csharp.png",
+      "categoryID": 2
+    },
+    {
+      "id": "710",
+      "name": "Iphone phone",
+      "price": 30000,
+      "quantity": 3,
+      "imageURL": "assets/csharp.png",
+      "categoryID": 2
+    },
+    {
+      "id": "510",
+      "name": "Tablet 13",
+      "price": 3500,
+      "quantity": 1,
+      "imageURL": "assets/csharp.png",
+      "categoryID": 3
+    },
+    {
+      "id": "510",
+      "name": "Tablet 13 pro",
+      "price": 10000,
+      "quantity": 0,
+      "imageURL": "assets/csharp.png",
+      "categoryID": 3
+    },
+    {
+      "id": "801",
+      "name": "Tablet 15 pro",
+      "price": 13000,
+      "quantity": 3,
+      "imageURL": "assets/csharp.png",
+      "categoryID": 3
+    },
+    {
+      "id": "901",
+      "name": "Redmi note 10 pro",
+      "price": 10000,
+      "quantity": 5,
+      "imageURL": "assets/csharp.png",
+      "categoryID": 3
+    }
+  ]
+}
