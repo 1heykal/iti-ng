@@ -17,6 +17,7 @@ import { MainLayoutComponent } from './Components/main-layout/main-layout.compon
 import { NotFoundComponent } from './Components/NotFound/NotFound.component';
 import { ProductDetailsComponent } from './Components/order/product-details/product-details.component';
 import {HttpClientModule} from '@angular/common/http';
+import { AddProductComponent } from './Components/add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {HttpClientModule} from '@angular/common/http';
     NotFoundComponent,
     UserLoginComponent,
     MainLayoutComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,

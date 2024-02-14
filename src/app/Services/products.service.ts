@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IProduct } from '../Models/iproduct';
-import { Observable } from 'rxjs';
+import { Observable, catchError, retry, throwError } from 'rxjs';
 import { environment } from 'src/Environments/environment';
 
 @Injectable({
@@ -9,31 +9,67 @@ import { environment } from 'src/Environments/environment';
 })
 export class ProductsService {
 
-  constructor(private Http: HttpClient) { }
+  httpOptions : object;
+
+  constructor(private Http: HttpClient) {
+    this.httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+   }
 
   getAllProducts() : Observable<IProduct[]>{
-    return this.Http.get<IProduct[]>(`${environment.APIURL}/products`);
+    return this.Http.get<IProduct[]>(`${environment.APIURL}/products`).pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
   }
 
   getProductsByCatID(cid: number) : Observable<IProduct[]>{
-    return this.Http.get<IProduct[]>(`${environment.APIURL}/products?categoryID=${cid}`);
+    return this.Http.get<IProduct[]>(`${environment.APIURL}/products?categoryID=${cid}`)
+            .pipe(
+              retry(3),
+              catchError(this.handleError)
+            );
   }
 
   getProductById(pid: number) : Observable<IProduct> {
-    return this.Http.get<IProduct>(`${environment.APIURL}/${pid}`);
+    return this.Http.get<IProduct>(`${environment.APIURL}/${pid}`).pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
   }
 
 
-  addProduct(product: IProduct){
-    this.Http.post(environment.APIURL, product);
+  addProduct(product: IProduct): Observable<IProduct>{
+    return this.Http.post<IProduct>(`${environment.APIURL}/products`, JSON.stringify(product), this.httpOptions).pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
   }
 
   updateProduct(pid: number, product: IProduct){
-    this.Http.put(`${environment.APIURL}/${pid}`, product);
+    this.Http.put(`${environment.APIURL}/${pid}`, product).pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
   }
 
   deleteProduct(pid: number){ 
-    this.Http.delete(`${environment.APIURL}/${pid}`);
+    this.Http.delete(`${environment.APIURL}/${pid}`).pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
+  }
+
+
+  handleError(error:HttpErrorResponse){
+    if(error.status === 500){
+      console.error('An error occurd:', error.error);
+    }else{
+      console.error(`Backend returned code ${error.status}, body was: `, error.error);
+    }
+
+    return throwError(() => new Error('Error occured, please try again.'));
   }
   
 }

@@ -8,6 +8,7 @@ import { UserLoginComponent } from './Components/user-login/user-login.component
 import { MainLayoutComponent } from './Components/main-layout/main-layout.component';
 import { ProductDetailsComponent } from './Components/order/product-details/product-details.component';
 import { authGuard } from './Guards/auth.guard';
+import { AddProductComponent } from './Components/add-product/add-product.component';
 
 const routes: Routes = [
   {
@@ -15,12 +16,13 @@ const routes: Routes = [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       { path: 'products', component: ProductListComponent },
+      { path: 'products/add', component: AddProductComponent },
       { path: 'products/:pid', component: ProductDetailsComponent },
       { path: 'order', component: OrderMasterComponent, canActivate: [authGuard] },
     ]
   },
   { path: 'login', component: UserLoginComponent },
-  { path: 'logout', component: UserLoginComponent},
+  { path: 'logout', component: UserLoginComponent },
   { path: '**', component: NotFoundComponent }
 ];
 

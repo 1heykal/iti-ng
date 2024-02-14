@@ -85,6 +85,78 @@
       "quantity": 5,
       "imageURL": "assets/csharp.png",
       "categoryID": 3
+    },
+    {
+      "id": 1000,
+      "name": "Mobile",
+      "price": 6000,
+      "categoryID": 3,
+      "quantity": 6,
+      "imageURL": "assets/csharp.png"
+    },
+    {
+      "id": 1000,
+      "name": "Mobile",
+      "price": 6000,
+      "categoryID": 3,
+      "quantity": 6,
+      "imageURL": "assets/csharp.png"
+    },
+    {
+      "id": 1000,
+      "name": "Mobile",
+      "price": 6000,
+      "categoryID": 3,
+      "quantity": 6,
+      "imageURL": "assets/csharp.png"
+    },
+    {
+      "id": 1000,
+      "name": "Mobile",
+      "price": 6000,
+      "categoryID": 3,
+      "quantity": 6,
+      "imageURL": "assets/csharp.png"
+    },
+    {
+      "id": 1000,
+      "name": "Mobile",
+      "price": 6000,
+      "categoryID": 3,
+      "quantity": 6,
+      "imageURL": "assets/csharp.png"
+    },
+    {
+      "id": 1000,
+      "name": "Mobile",
+      "price": 6000,
+      "categoryID": 3,
+      "quantity": 6,
+      "imageURL": "assets/csharp.png"
+    },
+    {
+      "id": 1000,
+      "name": "Mobile",
+      "price": 6000,
+      "categoryID": 3,
+      "quantity": 6,
+      "imageURL": "assets/csharp.png"
+    },
+    {
+      "id": 1000,
+      "name": "Mobile",
+      "price": 6000,
+      "categoryID": 3,
+      "quantity": 6,
+      "imageURL": "assets/csharp.png"
+    },
+    {
+      "id": 1000,
+      "name": "Mobile",
+      "price": 6000,
+      "categoryID": 3,
+      "quantity": 6,
+      "imageURL": "assets/csharp.png"
     }
   ]
 }
