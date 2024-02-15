@@ -73,3 +73,45 @@ export class ProductsService {
   }
   
 }
+
+
+
+
+// getAllProducts(): Observable<IProduct[]> {
+//   return this.genericAPIHandler.getAll('products').pipe(
+//     map((apiResponseVM: APIResponseVM) => apiResponseVM.data)
+//   );
+// }
+
+// getProductsByCatID(cid: number): Observable<IProduct[]> {
+//   return this.genericAPIHandler.getAll(`products?categoryID=${cid}`)
+//     .pipe(
+//       map((apiResponseVM: APIResponseVM) => apiResponseVM.data)
+//     );
+// }
+
+// getProductById(pid: number): Observable<IProduct> {
+//   return this.genericAPIHandler.getById('products', pid).pipe(
+//     map((apiResponseVM: APIResponseVM) => apiResponseVM.data)
+//   );
+// }
+
+
+// addProduct(product: IProduct): Observable<IProduct> {
+//   return this.genericAPIHandler.post('products', JSON.stringify(product)).pipe(
+//     map((apiResponseVM: APIResponseVM) => apiResponseVM.data)
+//   );
+// }
+
+// updateProduct(pid: number, product: IProduct) {
+//   this.genericAPIHandler.put('products', pid, JSON.stringify(product)).pipe(
+//     map((apiResponseVM: APIResponseVM) => apiResponseVM.data)
+//   );
+// }
+
+// deleteProduct(pid: number) {
+//   this.genericAPIHandler.delete('products', pid).pipe(
+//     map((apiResponseVM: APIResponseVM) => apiResponseVM.data)
+//   );
+// }
+
