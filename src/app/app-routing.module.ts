@@ -9,6 +9,7 @@ import { MainLayoutComponent } from './Components/main-layout/main-layout.compon
 import { ProductDetailsComponent } from './Components/order/product-details/product-details.component';
 import { authGuard } from './Guards/auth.guard';
 import { AddProductComponent } from './Components/add-product/add-product.component';
+import { UserRegisterComponent } from './Components/user-register/user-register.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
     ]
   },
   { path: 'login', component: UserLoginComponent },
+  { path: 'register', component: UserRegisterComponent },
   { path: 'logout', component: UserLoginComponent },
   { path: '**', component: NotFoundComponent }
 ];
