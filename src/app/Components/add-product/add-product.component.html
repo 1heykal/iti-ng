@@ -2,38 +2,38 @@
 <h3>To be removed [for test]:</h3>
 <div>
     {{newProduct | json}}
+    {{productName.errors | json}}
 </div>
 </div>
 
 <hr>
-<form (ngSubmit)="addProduct()">
+<form  #productForm="ngForm" (ngSubmit)="addProduct()">
     <div class="m-3">
         <label for="pName">Product Name:</label>
         <input #productName="ngModel" type="text" class="form-control" id="pName" name="name" [(ngModel)]="newProduct.name" required>
         <div [hidden]="productName.valid || productName.untouched">
-            <small>Name is required</small>
-            <small> Name must be 3 letters at least</small>
+            <small class="text-danger" *ngIf="productName.errors?.['required']">Name is required</small>
         </div>
     </div>
     <div class="m-3">
         <label for="pPrice">Price:</label>
-        <input type="number" class="form-control" id="pPrice" name="price" [(ngModel)]="newProduct.price" >
+        <input type="number" class="form-control" id="pPrice" name="price" [(ngModel)]="newProduct.price" required>
     </div>
     <div class="m-3">
         <label for="pCategory" class="form-label">Category:</label>
-        <select class="form-select form-select-lg" name="category" name="category" id="pCategory" [(ngModel)]="newProduct.categoryID" >
+        <select class="form-select form-select-lg" name="category" name="category" id="pCategory" [(ngModel)]="newProduct.categoryID" required >
             <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
         </select>
     </div>
     <div class="m-3">
         <label for="pImage">Image:</label>
-        <input type="file" class="form-control" id="pImage" name="image" [(ngModel)]="newProduct.imageURL" >
+        <input type="file" class="form-control" id="pImage" name="image" [(ngModel)]="newProduct.imageURL" required >
     </div>
     <div class="m-3">
         <label for="pQuantity">Quantity:</label>
-        <input type="number" class="form-control" id="pQuantity" name="quantity" [(ngModel)]="newProduct.quantity" >
+        <input type="number" class="form-control" id="pQuantity" name="quantity" [(ngModel)]="newProduct.quantity" required>
     </div>
-    <button type="submit" class="btn btn-primary m-3">
+    <button [disabled]="productForm.invalid" type="submit" class="btn btn-primary m-3">
         Save
     </button>
 </form>
