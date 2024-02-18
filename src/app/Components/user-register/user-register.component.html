@@ -1,8 +1,17 @@
 <div class="container">
-    <form [formGroup]="userRegisterForm" class="m-3">
+    <form [formGroup]="userRegisterForm" class="m-3" (ngSubmit)="submit()">
         <div class="m-3">
             <label for="fullName" class="form-label">Full Name:</label>
-            <input type="text" formControlName="fullName" class="form-control" id="fullname" name="fullName">
+            <input type="text" formControlName="fullName" class="form-control" id="fullname" name="fullName"
+                [class.is-invalid]="!fullName?.valid">
+            <div class="alert alert-warning" [hidden]="fullName?.valid || fullName?.untouched || !fullName?.errors">
+                <small *ngIf="fullName?.errors?.['required']">
+                    Full Name is required
+                </small>
+                <small *ngIf="fullName?.errors?.['pattern']">
+                    Full Name must be 3 letters or more, {{fullName?.errors?.['pattern'].actualValue}} doesn't match.
+                </small>
+            </div>
         </div>
 
         <div class="m-3">
@@ -10,11 +19,16 @@
             <input type="email" formControlName="email" class="form-control" id="email" name="email">
         </div>
 
-        <div class="m-3">
-            <label for="mobileNumber" class="form-label">Phone Number:</label>
-            <input type="text" formControlName="mobileNumber" class="form-control" id="mobileNumber"
-                name="mobileNumber">
+        <div formArrayName="mobileNumber">
+            <div class="m-3 ms-3" *ngFor=" let number of phoneNumbers.controls; let i = index;">
+                <label for="mobileNumber-{{i + 1}}" class="form-label">Phone Number - {{i+1}}:</label>
+                <input type="text" formControlName="{{i}}" class="form-control" id="mobileNumber-{{i + 1}}"
+                    name="mobileNumber-{{i + 1}}">
+            </div>
+            <button [disabled]="phoneNumbers.controls.length == 1" type="button" class="btn btn-success m-3" (click)="addPhoneNo()">+</button>
         </div>
+
+
 
         <div formGroupName="address">
             <div class="m-3">
@@ -31,6 +45,32 @@
             </div>
         </div>
 
+        <div class="form-check m-3">
+            <input formControlName="referal" class="form-check-input" type="radio" name="referal" id="flexRadioDefault1" value="social" (change)="updateReferalValidators()">
+            <label class="form-check-label" for="flexRadioDefault1">
+                social
+            </label>
+          </div>
+          <div class="form-check m-3">
+            <input formControlName="referal" class="form-check-input" type="radio" name="referal" id="flexRadioDefault2" checked value="friend" (change)="updateReferalValidators()">
+            <label class="form-check-label" for="flexRadioDefault2">
+                friend
+            </label>
+          </div>
+          <div class="form-check m-3">
+            <input formControlName="referal" class="form-check-input" type="radio" name="referal" id="flexRadioDefault2" checked value="other" (change)="updateReferalValidators()">
+            <label class="form-check-label" for="flexRadioDefault2">
+                others
+            </label>
+          </div>
+
+          <div class="m-3" *ngIf="referal?.value == 'other'">
+            <label for="referalOther" class="form-label">referalOther:</label>
+            <input type="text" formControlName="referalOther" class="form-control" id="referalOther" name="referalOther">
+        </div>
+
+
+
         <div class="m-3">
             <label for="password" class="form-label">Password:</label>
             <input type="password" formControlName="password" class="form-control" id="password" name="password">
@@ -44,10 +84,11 @@
         </div>
 
 
-        <button type="submit" class="btn btn-primary m-3">
+        <button type="submit" [disabled]="userRegisterForm.invalid" class="btn btn-primary m-3">
             Save
         </button>
     </form>
+
     <hr>
     <div class="text-danger1">
         <h1>To be removed [for test]</h1>

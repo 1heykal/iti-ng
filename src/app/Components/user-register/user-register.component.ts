@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { IUser } from 'src/app/Models/IUser';
 
 @Component({
   selector: 'app-user-register',
@@ -16,15 +17,16 @@ export class UserRegisterComponent implements OnInit {
     ]],
 
     email: ['', Validators.required], // or formBuilder.Control('')
-    mobileNumber: [''],
+    mobileNumber: this.formBuilder.array(['']),
     address: this.formBuilder.group({
       city: [''],
       postalCode: [''],
       street: ['']
     }),
-    password: [''],
-    confirmPassword: ['']
-
+    password: ['', Validators.required],
+    confirmPassword: ['', Validators.required],
+    referal: [''],
+    referalOther: ['']
   });
 
 
@@ -57,6 +59,32 @@ export class UserRegisterComponent implements OnInit {
 
     // call api to get user profile
    
+  }
+
+  submit(){
+    let userModel: IUser = this.userRegisterForm.value;
+    console.log(userModel);
+  }
+
+  get phoneNumbers(){
+    return this.userRegisterForm.get('mobileNumber') as FormArray;
+  }
+
+  addPhoneNo(){
+    this.phoneNumbers.push(this.formBuilder.control(''));
+  }
+
+  get referal(){
+    return this.userRegisterForm.get('referal');
+  }
+
+  updateReferalValidators(){
+    if(this.referal?.value == 'other')
+    this.userRegisterForm.get('referalOther')?.addValidators(Validators.required);
+  else{
+    this.userRegisterForm.get('referalOther')?.clearValidators();
+  }
+  this.userRegisterForm.get('referalOther')?.updateValueAndValidity();
   }
 }
 
