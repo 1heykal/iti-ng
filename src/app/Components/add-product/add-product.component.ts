@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ICategory } from 'src/app/Models/icategory';
 import { IProduct } from 'src/app/Models/iproduct';
@@ -31,7 +32,7 @@ export class AddProductComponent implements OnInit {
     ]
   }
 
-
+  
 
   ngOnInit(): void {
 

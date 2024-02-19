@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { IUser } from 'src/app/Models/IUser';
 
 @Component({
@@ -16,7 +16,7 @@ export class UserRegisterComponent implements OnInit {
       Validators.pattern('[A-Za-z]{3,}')
     ]],
 
-    email: ['', Validators.required], // or formBuilder.Control('')
+    email: ['', [Validators.required, this.existedEmailValidator()]], // or formBuilder.Control('')
     mobileNumber: this.formBuilder.array(['']),
     address: this.formBuilder.group({
       city: [''],
@@ -70,6 +70,10 @@ export class UserRegisterComponent implements OnInit {
     return this.userRegisterForm.get('mobileNumber') as FormArray;
   }
 
+  get email(){
+    return this.userRegisterForm.get('email');
+  }
+
   addPhoneNo(){
     this.phoneNumbers.push(this.formBuilder.control(''));
   }
@@ -86,6 +90,19 @@ export class UserRegisterComponent implements OnInit {
   }
   this.userRegisterForm.get('referalOther')?.updateValueAndValidity();
   }
+
+
+  existedEmailValidator() : ValidatorFn{
+    return (control: AbstractControl) : ValidationErrors | null => {
+      let emailValue : string = control.value;
+      let validationError = {
+        'EmailNotValid': {value: emailValue}
+      };
+      return emailValue.includes('@') || (emailValue.length == 0 && control.untouched)? null : validationError;
+    };
+  }
+
+
 }
 
 
