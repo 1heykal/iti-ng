@@ -16,9 +16,14 @@ import { UserLoginComponent } from './Components/user-login/user-login.component
 import { MainLayoutComponent } from './Components/main-layout/main-layout.component';
 import { NotFoundComponent } from './Components/NotFound/NotFound.component';
 import { ProductDetailsComponent } from './Components/order/product-details/product-details.component';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AddProductComponent } from './Components/add-product/add-product.component';
 import { UserRegisterComponent } from './Components/user-register/user-register.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -36,7 +41,7 @@ import { UserRegisterComponent } from './Components/user-register/user-register.
     MainLayoutComponent,
     ProductDetailsComponent,
     AddProductComponent,
-    UserRegisterComponent
+    UserRegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +49,11 @@ import { UserRegisterComponent } from './Components/user-register/user-register.
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatSidenavModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

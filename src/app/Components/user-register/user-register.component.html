@@ -3,7 +3,7 @@
         <div class="m-3">
             <label for="fullName" class="form-label">Full Name:</label>
             <input type="email" formControlName="fullName" class="form-control" id="fullname" name="fullName"
-                [class.is-invalid]="!fullName?.valid">
+                [class.is-invalid]="!fullName?.valid && fullName?.touched">
             <div class="alert alert-warning" [hidden]="fullName?.valid || fullName?.untouched || !fullName?.errors">
                 <small *ngIf="fullName?.errors?.['required']">
                     Full Name is required
@@ -17,14 +17,14 @@
         <div class="m-3">
             <label for="email" class="form-label">Email:</label>
             <input type="text" formControlName="email" class="form-control" id="email" name="email"
-                [class.is-invalid]="!email?.valid">
+                [class.is-invalid]="!email?.valid && email?.touched">
             <div class="alert alert-warning" [hidden]="email?.valid || email?.untouched || !email?.errors">
                 <small *ngIf="email?.errors?.['required']">
                     email is required
                 </small>
 
-                <small *ngIf="email?.errors?.['EmailNotValid']">
-                    email must have @ sign, {{email?.errors?.['EmailNotValid'].actualValue}} doesn't match.
+                <small *ngIf="email?.errors?.['EmailAlreadyInUse']">
+                   Email is already in use.
                 </small>
             </div>
         </div>
@@ -35,7 +35,7 @@
                 <input type="text" formControlName="{{i}}" class="form-control" id="mobileNumber-{{i + 1}}"
                     name="mobileNumber-{{i + 1}}">
             </div>
-            <button [disabled]="phoneNumbers.controls.length == 1" type="button" class="btn btn-success m-3" (click)="addPhoneNo()">+</button>
+            <button type="button" class="btn btn-success m-3" (click)="addPhoneNo()">+</button>
         </div>
 
 

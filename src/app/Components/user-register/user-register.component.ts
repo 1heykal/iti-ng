@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { existedEmailValidator } from 'src/app/CustomValidators/existed-email.validator';
+import { passwordMatch } from 'src/app/CustomValidators/password-match.validator';
 import { IUser } from 'src/app/Models/IUser';
 
 @Component({
@@ -9,6 +11,7 @@ import { IUser } from 'src/app/Models/IUser';
 })
 export class UserRegisterComponent implements OnInit {
 
+  existedUserEmails: string[] = [];
   userRegisterForm: FormGroup = this.formBuilder.group({
 
     fullName: ['', [
@@ -16,7 +19,7 @@ export class UserRegisterComponent implements OnInit {
       Validators.pattern('[A-Za-z]{3,}')
     ]],
 
-    email: ['', [Validators.required, this.existedEmailValidator()]], // or formBuilder.Control('')
+    email: ['', [Validators.required, existedEmailValidator()]], // or formBuilder.Control('')
     mobileNumber: this.formBuilder.array(['']),
     address: this.formBuilder.group({
       city: [''],
@@ -27,7 +30,7 @@ export class UserRegisterComponent implements OnInit {
     confirmPassword: ['', Validators.required],
     referal: [''],
     referalOther: ['']
-  });
+  },  {'Validators': [passwordMatch]});
 
 
   constructor(private formBuilder: FormBuilder) {
@@ -37,16 +40,9 @@ export class UserRegisterComponent implements OnInit {
 
   ngOnInit(): void {
     // check path params, to specify user reg, or edit profile
-    this.userRegisterForm.patchValue({ // setValue    // patch - not alll properities // set must provide all prop
-      fullName: 'ITI',
-      email: 'info@iti.gov.eg',
-      mobileNumber: '14631865588',
-      address: {
-        city: 'dk',
-        postalCode: '111',
-        street: 'dk st'
-      }
-    });
+   this.existedUserEmails = [
+    'o@a.com', "ss@bsbs.com", "bobo@coco.co", "so@nson.com"
+   ]
   }
 
   get fullName(){
@@ -92,15 +88,7 @@ export class UserRegisterComponent implements OnInit {
   }
 
 
-  existedEmailValidator() : ValidatorFn{
-    return (control: AbstractControl) : ValidationErrors | null => {
-      let emailValue : string = control.value;
-      let validationError = {
-        'EmailNotValid': {value: emailValue}
-      };
-      return emailValue.includes('@') || (emailValue.length == 0 && control.untouched)? null : validationError;
-    };
-  }
+ 
 
 
 }
