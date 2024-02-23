@@ -7,10 +7,15 @@ export function passwordMatch() : ValidatorFn{
         let passwordControl = control.get('password');
         let confirmPasswordControl = control.get('confirmPassword');
 
-        if(passwordControl && confirmPasswordControl){
-            
+        if(!passwordControl || !confirmPasswordControl || !passwordControl.value || !confirmPasswordControl.value){
+            return null;
         }
 
-        return null;
+        let valErr = { PasswordsDoesnotMatch: {
+            'pass': passwordControl.value, 
+            'confirmPass': confirmPasswordControl.value
+        }};
+        return (passwordControl.value == confirmPasswordControl.value)? null : valErr;
+
     };
 }

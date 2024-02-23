@@ -83,12 +83,27 @@
             <label for="password" class="form-label">Password:</label>
             <input type="password" formControlName="password" class="form-control" id="password" name="password">
         </div>
-
+        <div class="alert alert-warning" [hidden]="password?.untouched">
+            <small *ngIf="password?.errors?.['required']">
+                 Password is required
+            </small>
+          
+        </div>
+        
         <div class="m-3">
             <label for="cpassword" class="form-label"> Confirm Password:</label>
             <input type="password" formControlName="confirmPassword" class="form-control" id="cpassword"
                 name="cpassword">
         </div>
+        <div class="alert alert-warning" [hidden]="confirmPassword?.untouched">
+            <small *ngIf="confirmPassword?.errors?.['required']">
+                 Confirm Password is required
+            </small>
+            <small *ngIf="userRegisterForm?.errors?.['PasswordsDoesnotMatch']">
+               Passwords dosen't match.
+            </small>
+        </div>
+        
 
 
         <button type="submit" [disabled]="userRegisterForm.invalid" class="btn btn-primary m-3">

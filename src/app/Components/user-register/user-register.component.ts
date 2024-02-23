@@ -30,7 +30,7 @@ export class UserRegisterComponent implements OnInit {
     confirmPassword: ['', Validators.required],
     referal: [''],
     referalOther: ['']
-  },  {'Validators': [passwordMatch]});
+  },  {validators: [passwordMatch()]});
 
 
   constructor(private formBuilder: FormBuilder) {
@@ -76,6 +76,14 @@ export class UserRegisterComponent implements OnInit {
 
   get referal(){
     return this.userRegisterForm.get('referal');
+  }
+
+  get password(){
+    return this.userRegisterForm.get('password');
+  }
+
+  get confirmPassword(){
+    return this.userRegisterForm.get('confirmPassword');
   }
 
   updateReferalValidators(){
