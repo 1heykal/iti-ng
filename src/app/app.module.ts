@@ -21,9 +21,7 @@ import { AddProductComponent } from './Components/add-product/add-product.compon
 import { UserRegisterComponent } from './Components/user-register/user-register.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
+
 
 @NgModule({
   declarations: [
@@ -51,9 +49,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     HttpClientModule,
     MatSidenavModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

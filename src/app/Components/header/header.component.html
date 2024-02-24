@@ -14,6 +14,7 @@
           <a class="nav-link" [hidden]="isUserLogged" routerLink="login" routerLinkActive="active">Login</a>
           <a class="nav-link" [hidden]="!isUserLogged" routerLink="logout" routerLinkActive="active">Logout</a>
           <a class="nav-link" [hidden]="isUserLogged" routerLink="register" routerLinkActive="active">Register</a>
+          <a class="nav-link" [hidden]="!isUserLogged" routerLink="user/profile" routerLinkActive="active">Profile</a>
         </div>
       </div>
     </div>

@@ -20,6 +20,10 @@ const routes: Routes = [
       { path: 'products/add', component: AddProductComponent },
       { path: 'products/:pid', component: ProductDetailsComponent },
       { path: 'order', component: OrderMasterComponent, canActivate: [authGuard] },
+      {
+        path: 'user', 
+        loadChildren: () => import('src/app/Components/user-module/user.module').then(m => m.UserModule)
+      },
     ]
   },
   { path: 'login', component: UserLoginComponent },
