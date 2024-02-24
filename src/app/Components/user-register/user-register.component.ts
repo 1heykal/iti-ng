@@ -30,7 +30,7 @@ export class UserRegisterComponent implements OnInit {
     confirmPassword: ['', Validators.required],
     referal: [''],
     referalOther: ['']
-  },  {validators: [passwordMatch()]});
+  },  {validators: [passwordMatch]});
 
 
   constructor(private formBuilder: FormBuilder) {
